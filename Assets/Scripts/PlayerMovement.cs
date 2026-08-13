@@ -6,7 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] float moveSpeed = 10f;
     [SerializeField] float jumpSpeed = 23f;
-    [SerializeField] float climbSpeed = 9f;
+    [SerializeField] float climbSpeed = 7f;
     float startingGravityScale;
 
     Vector2 moveInput;
