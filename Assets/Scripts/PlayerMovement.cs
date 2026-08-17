@@ -9,7 +9,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float jumpSpeed = 23f;
     [SerializeField] float climbSpeed = 7f;
     [SerializeField] float coyoteTime = 0.2f;
+    [SerializeField] float jumpBufferTime = 0.2f;
     float coyoteTimeCounter;
+    float jumpBufferCounter;
     float startingGravityScale;
 
     Vector2 moveInput;
@@ -17,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
     Animator myAnimator;
     CapsuleCollider2D myBodyCollider;
     BoxCollider2D myFeetCollider;
+    SpriteRenderer mySpriteRenderer;
 
     
     void Start()
@@ -25,15 +28,21 @@ public class PlayerMovement : MonoBehaviour
         myAnimator = GetComponent<Animator>();
         myBodyCollider = GetComponent<CapsuleCollider2D>();
         myFeetCollider = GetComponent<BoxCollider2D>();
+        mySpriteRenderer = GetComponent<SpriteRenderer>();
         startingGravityScale = 7f;
     }
 
     void Update()
     {
-        HandleCoyoteTime();
-        Run();
-        FlipSprite();
-        ClimbLadder();
+    HandleCoyoteTime();
+    HandleBufferTime();
+
+    Jump();
+    Run();
+    FlipSprite();
+    ClimbLadder();
+
+    Debug.Log($"coyote={coyoteTimeCounter:F3}, velY={myRigidbody.linearVelocity.y:F8}, condition={myRigidbody.linearVelocity.y <= 0f}, isOnGround={myFeetCollider.IsTouchingLayers(LayerMask.GetMask("Ground"))}");
     }
 
     void OnMove(InputValue value)
@@ -43,11 +52,23 @@ public class PlayerMovement : MonoBehaviour
 
     void OnJump(InputValue value)
     {
-        if (value.isPressed && coyoteTimeCounter > 0f)
+        if (value.isPressed)
         {
-            myRigidbody.linearVelocity += new Vector2(0f, jumpSpeed);
+            jumpBufferCounter = jumpBufferTime;
+        }
+    }
 
-            coyoteTimeCounter = 0f;
+    void Jump()
+    {
+        if (jumpBufferCounter > 0f && coyoteTimeCounter > 0f)
+        {
+        myRigidbody.linearVelocity += new Vector2(
+            0,
+            jumpSpeed
+        );
+
+        jumpBufferCounter = 0f;
+        coyoteTimeCounter = 0f;
         }
     }
 
@@ -69,7 +90,7 @@ public class PlayerMovement : MonoBehaviour
         bool hasHorizontalSpeed = Mathf.Abs(myRigidbody.linearVelocity.x) > Mathf.Epsilon;
         if (hasHorizontalSpeed)
         {
-            transform.localScale = new Vector2 (Mathf.Sign(myRigidbody.linearVelocity.x), 1f);   
+            mySpriteRenderer.flipX = myRigidbody.linearVelocity.x < 0f;   
         }
     }
 
@@ -98,13 +119,21 @@ public class PlayerMovement : MonoBehaviour
     {
         bool isOnGround = myFeetCollider.IsTouchingLayers(LayerMask.GetMask("Ground"));
 
-        if (isOnGround)
+        if (isOnGround && myRigidbody.linearVelocity.y <= 0.01f)
         {
             coyoteTimeCounter = coyoteTime;
         }
         else
         {
             coyoteTimeCounter -= Time.deltaTime;
+        }
+    }
+
+    void HandleBufferTime()
+    {
+        if (jumpBufferCounter > 0f)
+        {
+            jumpBufferCounter -= Time.deltaTime;
         }
     }
 }
