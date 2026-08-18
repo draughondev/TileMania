@@ -8,8 +8,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float moveSpeed = 8.5f;
     [SerializeField] float jumpSpeed = 23f;
     [SerializeField] float climbSpeed = 7f;
-    [SerializeField] float coyoteTime = 0.2f;
-    [SerializeField] float jumpBufferTime = 0.2f;
+    [SerializeField] float coyoteTime = 0.12f;
+    [SerializeField] float jumpBufferTime = 0.12f;
     float coyoteTimeCounter;
     float jumpBufferCounter;
     float startingGravityScale;
@@ -119,7 +119,7 @@ public class PlayerMovement : MonoBehaviour
     {
         bool isOnGround = myFeetCollider.IsTouchingLayers(LayerMask.GetMask("Ground"));
 
-        if (isOnGround && myRigidbody.linearVelocity.y <= 0.01f)
+        if (isOnGround && myRigidbody.linearVelocity.y <= 0.01)
         {
             coyoteTimeCounter = coyoteTime;
         }
