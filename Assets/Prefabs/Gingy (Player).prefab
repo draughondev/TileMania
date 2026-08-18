@@ -84,7 +84,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1850019911
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 1194579902333200216, guid: 962631968b2f1054ca110a99d309794f, type: 3}
@@ -154,7 +154,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.06694126, y: -0.44181192}
+  m_Offset: {x: -0.060000002, y: -0.44299865}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -164,7 +164,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.5065479, y: 0.11637616}
+  m_Size: {x: 0.4418435, y: 0.11170912}
   m_EdgeRadius: 0
 --- !u!70 &4001917680480876572
 CapsuleCollider2D:
@@ -275,3 +275,5 @@ MonoBehaviour:
   moveSpeed: 8.5
   jumpSpeed: 23
   climbSpeed: 7
+  coyoteTime: 0.12
+  jumpBufferTime: 0.12
