@@ -42,6 +42,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (!isAlive) 
         {
+            myRigidbody.linearVelocity = new Vector2(0, 10);
             Shrink();
             return; 
         }
@@ -54,7 +55,7 @@ public class PlayerMovement : MonoBehaviour
         ClimbLadder();
         Die();
     }
-
+    
     void OnMove(InputValue value)
     {
         if (!isAlive) { return; }
