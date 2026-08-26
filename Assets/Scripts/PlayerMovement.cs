@@ -11,8 +11,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float jumpSpeed = 23f;
     [SerializeField] float climbSpeed = 7f;
     [SerializeField] float coyoteTime = 0.12f;
-    [SerializeField] float jumpBufferTime = 0.12f;
+    [SerializeField] float jumpBufferTime = 0.1f;
     [SerializeField] Vector2 deathkick = new Vector2 (0f, 25f);
+    [SerializeField] GameObject bullet;
+    [SerializeField] Transform gun;
+
     float coyoteTimeCounter;
     float jumpBufferCounter;
     float startingGravityScale;
@@ -153,5 +156,15 @@ public class PlayerMovement : MonoBehaviour
             myAnimator.SetTrigger("Dying");
             myRigidbody.linearVelocity = deathkick;
         }
+    }
+
+    void OnAttack(InputValue value)
+    {
+        if (!isAlive) {return;}
+        Instantiate(
+                bullet,
+                gun.position,
+                transform.rotation
+            );
     }
 }
