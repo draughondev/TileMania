@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float climbSpeed = 7f;
     [SerializeField] float coyoteTime = 0.12f;
     [SerializeField] float jumpBufferTime = 0.12f;
-
+    [SerializeField] Vector2 deathkick = new Vector2 (0f, 25f);
     float coyoteTimeCounter;
     float jumpBufferCounter;
     float startingGravityScale;
@@ -39,13 +39,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-
-        if (!isAlive) 
-        {
-            myRigidbody.linearVelocity = new Vector2(0, 10);
-            Shrink();
-            return; 
-        }
+        if (!isAlive) {return;}
 
         HandleCoyoteTime();
         HandleBufferTime();
@@ -153,21 +147,11 @@ public class PlayerMovement : MonoBehaviour
 
     void Die()
     {
-        if (myBodyCollider.IsTouchingLayers(LayerMask.GetMask("Enemy")))
+        if (myBodyCollider.IsTouchingLayers(LayerMask.GetMask("Enemy", "Hazards")))
         {
             isAlive = false;
             myAnimator.SetTrigger("Dying");
-        }
-    }
-
-    void Shrink()
-    {
-        transform.localScale *= 0.99f;
-
-        if (transform.localScale.magnitude < 0.01f)
-        {
-            transform.localScale = Vector3.zero;
-            // Destroy the Character or Reset the Game
+            myRigidbody.linearVelocity = deathkick;
         }
     }
 }

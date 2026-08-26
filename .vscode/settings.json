@@ -67,5 +67,6 @@
         "*.sln": "*.csproj",
         "*.slnx": "*.csproj"
     },
-    "dotnet.defaultSolution": "TileMania.slnx"
+    "dotnet.defaultSolution": "TileMania.slnx",
+    "csharp.referencesCodeLens.enabled": false
 }
