@@ -9,9 +9,6 @@ public class LevelExit : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collision)
     {
         StartCoroutine(LoadNextLevel());
-
-        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        SceneManager.LoadScene(currentSceneIndex + 1);
     }
 
     IEnumerator LoadNextLevel()
@@ -24,6 +21,8 @@ public class LevelExit : MonoBehaviour
         {
             nextSceneIndex = 0;
         }
+
+        FindAnyObjectByType<ScenePersist>().resetScenePersists();
         SceneManager.LoadScene(nextSceneIndex);
     }
 }

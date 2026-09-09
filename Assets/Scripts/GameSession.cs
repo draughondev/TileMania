@@ -56,11 +56,9 @@ public class GameSession : MonoBehaviour
 
     void ResetGameSession()
     {
+        FindAnyObjectByType<ScenePersist>().resetScenePersists();
         SceneManager.LoadScene(0);
         Destroy(gameObject);
     }
 
-    // when player dies, do certain things
-    // reduce number of lives
-    // if we have no lives, restart the entire game 
 }
