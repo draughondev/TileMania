@@ -1,8 +1,6 @@
 # Tilemania
 
-<!-- Replace this line with your gameplay GIF or screenshot:
-![Tilemania Gameplay](YOUR_IMAGE_URL)
--->
+<img width="642" height="362" alt="TileMania" src="https://github.com/user-attachments/assets/60085d44-52ce-4b4e-a832-a0d725b5b5c1" />
 
 A 2D platforming game where the player runs, jumps, climbs, and shoots their way through multiple tile-based levels while collecting coins and avoiding enemies and hazards.
 
