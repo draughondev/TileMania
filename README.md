@@ -24,8 +24,6 @@ Compared to the earlier projects in the course, Tilemania introduced several sys
 
 After completing and following the tutorial portion of the project, I took the liberty to extend the game with several features of my own!
 
-<!-- Replace the examples below with the features you personally added. -->
-
 * Designed original level layouts with different platforming challenges.
 * Adjusted the player's movement, jumping, and climbing speeds to create a smoother gameplay experience.
 * Added unique enemy and hazard placements throughout the levels.
@@ -59,7 +57,7 @@ Building Tilemania helped me develop a stronger understanding of how Unity's dif
 * Created animation states and transitions for actions such as standing, running, climbing, and dying.
 * Learned how to flip sprites based on their direction of movement so that characters and enemies would face the correct direction.
 * Implemented basic enemy behavior, allowing enemies to move across platforms and turn around when they encountered an obstacle.
-* Created a projectile system using prefabs and `Instantiate()`, giving the player the ability to shoot and defeat enemies.
+* Created a projectile system using prefabs and `Instantiate`, giving the player the ability to shoot and defeat enemies.
 * Used Cinemachine to create a camera that follows the player while remaining confined within the boundaries of each level.
 * Implemented a score and lives system that remains persistent while moving between different scenes.
 * Learned how coroutines can be used to delay events such as restarting a level after the player dies.
